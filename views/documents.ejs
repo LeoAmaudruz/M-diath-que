@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Médiathèque</title>
+</head>
+<body>
+  <h1>Médiathèque</h1>
+  <ul>
+    <% documents.forEach(doc => { %>
+      <li>
+        <strong>Titre:</strong> <%= doc.fields.titre_avec_lien_vers_le_catalogue %> <br />
+        <strong>Auteur:</strong> <%= doc.fields.auteur %> <br />
+        <strong>Status:</strong> <%= doc.available ? 'Disponible' : 'Emprunté' %>
+        <br />
+        <form action="/documents/<%= doc.available ? 'borrow' : 'return' %>/<%= doc._id %>" method="POST">
+          <button type="submit"><%= doc.available ? 'Emprunter' : 'Retourner' %></button>
+        </form>
+      </li>
+    <% }) %>
+  </ul>
+</body>
+</html>
