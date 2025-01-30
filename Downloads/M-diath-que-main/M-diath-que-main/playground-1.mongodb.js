@@ -1,1 +1,0 @@
-db.documents.find({ "fields.rang": 7 }).pretty()
